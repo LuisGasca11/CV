@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+  --paper: #f4f1ea;
+  --card: #fffcf8;
+  --ink: #1c1916;
+  --muted: #514c46;
+  --line: #e3ddd3;
+  --accent: #0e5c50;
+  --chip: #efeae1;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #0e1110;
+  --card: #171c19;
+  --ink: #f4f1ea;
+  --muted: #c8c0b6;
+  --line: #2c3330;
+  --accent: #8fd4c6;
+  --chip: #232a27;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #0e1110;
+    --card: #171c19;
+    --ink: #f4f1ea;
+    --muted: #c8c0b6;
+    --line: #2c3330;
+    --accent: #8fd4c6;
+    --chip: #232a27;
+  }
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-newsreader), Georgia, "Times New Roman", serif;
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-chip: var(--chip);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 50;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.5rem 0.9rem;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.when-dark {
+  display: none;
+}
+
+:root[data-theme="dark"] .when-dark {
+  display: inline;
+}
+
+:root[data-theme="dark"] .when-light {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .when-dark {
+    display: inline;
+  }
+
+  :root:not([data-theme="light"]) .when-light {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@media print {
+  :root,
+  :root[data-theme="dark"],
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --paper: #ffffff;
+    --card: #ffffff;
+    --ink: #111111;
+    --muted: #222222;
+    --line: #c8c8c8;
+    --accent: #0b3f37;
+    --chip: #f2f2f2;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    background: #ffffff;
+    font-size: 11pt;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  @page {
+    size: A4;
+    margin: 12mm 14mm 14mm;
+  }
+}
