@@ -1,39 +1,45 @@
-import { sectionClassName } from "@/components/section-class";
-import { SectionHeading } from "@/components/section-heading";
+import { SectionIntro } from "@/components/section-intro";
 import { softSkills, technicalSkills } from "@/data/cv";
 
 export function Skills() {
   return (
-    <section id="habilidades" aria-labelledby="habilidades-tecnicas" className={sectionClassName}>
-      <div className="grid gap-12 lg:grid-cols-2 print:gap-6">
-        <div>
-          <SectionHeading id="habilidades-tecnicas">Habilidades técnicas</SectionHeading>
-          <div className="mt-6 space-y-5 print:mt-3 print:space-y-3">
-            {technicalSkills.map((group) => (
-              <div key={group.label}>
-                <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
-                  {group.label}
-                </h3>
-                <ul className="mt-2 flex flex-wrap gap-2">
-                  {group.items.map((item) => (
-                    <li key={item} className="rounded-full bg-chip px-3 py-1 text-sm text-ink">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div>
-          <SectionHeading id="habilidades-blandas">Habilidades blandas</SectionHeading>
-          <ul className="mt-6 grid gap-2 print:mt-3">
+    <section
+      id="habilidades"
+      aria-labelledby="habilidades-tecnicas"
+      className="scroll-mt-24 border-b border-line px-5 py-24 sm:py-32 print:px-0 print:py-6"
+    >
+      <div className="mx-auto max-w-6xl">
+        <SectionIntro index="04" id="habilidades-tecnicas" title="Habilidades técnicas" />
+        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
+          {technicalSkills.map((group, index) => (
+            <li
+              key={group.label}
+              data-reveal
+              className={`sheet-card rounded-3xl border border-line bg-white/[0.03] p-6 transition-colors hover:border-accent/60 ${
+                index < 2 ? "lg:col-span-3" : "lg:col-span-2"
+              }`}
+            >
+              <h3 className="text-xs font-medium tracking-[0.18em] text-accent uppercase">{group.label}</h3>
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {group.items.map((item) => (
+                  <li key={item} className="rounded-full border border-line px-2.5 py-1 text-sm">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-16" data-reveal>
+          <h2 id="habilidades-blandas" className="font-display text-4xl tracking-tight text-balance sm:text-6xl">
+            Habilidades blandas
+          </h2>
+          <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {softSkills.map((skill) => (
               <li
                 key={skill}
-                className="flex items-center gap-2 rounded-xl border border-line bg-card px-3 py-2 text-sm text-ink print:border-0 print:bg-transparent print:px-0 print:py-0.5"
+                className="sheet-card rounded-3xl border border-line bg-white/[0.03] px-5 py-6 font-display text-2xl tracking-tight transition-colors hover:border-accent/60"
               >
-                <span aria-hidden="true" className="size-1.5 shrink-0 rounded-full bg-accent" />
                 {skill}
               </li>
             ))}

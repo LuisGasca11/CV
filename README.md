@@ -26,4 +26,4 @@ La carpeta `out/` contiene el HTML, CSS y JavaScript generados. `netlify.toml` u
 
 ## Impresión
 
-El botón **Imprimir CV** (o Ctrl/Cmd+P) aplica estilos de impresión: fondo claro, sin navegación y con saltos de página que respetan cada bloque.
+El botón **Imprimir CV** (o Ctrl/Cmd+P) deja el currículum en negro sobre blanco, con acentos naranja. En impresión se apagan el scroll suave, las animaciones y el fondo WebGL.

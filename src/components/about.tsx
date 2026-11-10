@@ -1,14 +1,18 @@
-import { sectionClassName } from "@/components/section-class";
-import { SectionHeading } from "@/components/section-heading";
+import { SectionIntro } from "@/components/section-intro";
 import { about } from "@/data/cv";
 
 export function About() {
   return (
-    <section id="sobre-mi" aria-labelledby="sobre-mi-titulo" className={sectionClassName}>
-      <SectionHeading id="sobre-mi-titulo">Sobre mí</SectionHeading>
-      <p className="mt-5 max-w-3xl text-base leading-relaxed text-ink sm:text-lg print:mt-3 print:text-[11pt]">
-        {about}
-      </p>
+    <section id="sobre-mi" aria-labelledby="sobre-mi-titulo" className="scroll-mt-24 border-b border-line px-5 py-24 sm:py-32 print:px-0 print:py-6">
+      <div className="mx-auto max-w-6xl">
+        <SectionIntro index="01" id="sobre-mi-titulo" title="Sobre mí" />
+        <p
+          data-reveal
+          className="mt-8 max-w-4xl font-display text-2xl leading-snug tracking-tight text-balance sm:text-4xl"
+        >
+          {about}
+        </p>
+      </div>
     </section>
   );
 }

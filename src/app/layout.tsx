@@ -1,18 +1,22 @@
-import type { Metadata } from "next";
-import { Geist, Newsreader } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Bricolage_Grotesque, Inter } from "next/font/google";
 import { JsonLd } from "@/components/json-ld";
+import { MotionEffects } from "@/components/motion-effects";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
+import { SmoothScroll } from "@/components/smooth-scroll";
 import { profile } from "@/data/cv";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-inter",
   display: "swap",
 });
 
-const newsreader = Newsreader({
-  variable: "--font-newsreader",
+const display = Bricolage_Grotesque({
   subsets: ["latin"],
+  variable: "--font-bricolage",
   display: "swap",
 });
 
@@ -59,19 +63,28 @@ export const metadata: Metadata = {
   },
 };
 
-const themeInit = `(function(){try{var stored=localStorage.getItem("cv-theme");var theme=stored==="light"||stored==="dark"?stored:(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=theme;}catch(e){}})();`;
+export const viewport: Viewport = {
+  themeColor: "#0a0908",
+  colorScheme: "dark",
+};
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="es-MX"
-      className={`${geistSans.variable} ${newsreader.variable} h-full antialiased`}
-      suppressHydrationWarning
-    >
-      <body className="min-h-full bg-paper font-sans text-ink">
-        <script dangerouslySetInnerHTML={{ __html: themeInit }} />
+    <html lang="es-MX" className={`${inter.variable} ${display.variable} h-full antialiased`}>
+      <body className="min-h-full bg-canvas text-ink">
         <JsonLd />
-        {children}
+        <a
+          href="#contenido"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[70] focus:rounded-full focus:bg-accent focus:px-4 focus:py-2 focus:text-on-accent"
+        >
+          Saltar al contenido
+        </a>
+        <SmoothScroll>
+          <SiteHeader />
+          <main id="contenido">{children}</main>
+          <SiteFooter />
+          <MotionEffects />
+        </SmoothScroll>
       </body>
     </html>
   );
